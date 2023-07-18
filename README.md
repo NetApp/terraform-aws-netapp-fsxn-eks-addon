@@ -1,4 +1,4 @@
-# NetApp Astra Trident Add-on for AWS EKS
+# Amazon FSx for NetApp ONTAP CSI driver EKS Add-on
 
 > Deploy NetApp Astra Trident to AWS EKS Clusters with this add-on.
 
@@ -22,11 +22,17 @@ Refer to [this guide](https://docs.netapp.com/us-en/trident/trident-use/trident-
 <!-- BEGIN_TF_DOCS -->
 ### Inputs
 
-
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| helm_config | NetApp Trident Helm chart configuration | `any` | `{}` | no |
+| manage_via_gitops | Determines if the add-on should be managed via GitOps | `bool` | `false` | no |
 
 ### Outputs
 
-
+| Name | Description |
+|------|-------------|
+| argocd_gitops_config | Configuration used for managing the add-on with ArgoCD |
+| merged_helm_config | (merged) Helm Config for NetApp Trident |
 <!-- END_TF_DOCS -->
 
 ## Author Information
