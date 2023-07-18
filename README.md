@@ -1,4 +1,4 @@
-# NetApp Astra Trident Add-on for AWS EKS
+# Amazon FSx for NetApp ONTAP CSI driver EKS Add-on
 
 > Deploy NetApp Astra Trident to AWS EKS Clusters with this add-on.
 
