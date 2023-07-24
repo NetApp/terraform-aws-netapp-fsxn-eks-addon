@@ -86,7 +86,7 @@ module "eks" {
 ################################################################################
 
 module "fsxn_driver" {
-    source = "https://github.com/NetApp/terraform-aws-netapp-fsxn-eks-addon"
+    source = "github.com/NetApp/terraform-aws-netapp-fsxn-eks-addon//"
     helm_config = {
         namespace = var.namespace
     }
