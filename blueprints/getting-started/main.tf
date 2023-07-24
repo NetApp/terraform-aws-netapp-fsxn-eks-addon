@@ -1,4 +1,4 @@
-# Copyright (c) NetApp, Inc.
+# Copyright 2023 (c) NetApp, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 provider "aws" {
@@ -85,33 +85,8 @@ module "eks" {
 # EKS Addons
 ################################################################################
 
-# module "eks_blueprint_addons" {
-#   # See https://github.com/aws-ia/terraform-aws-eks-blueprints/releases for latest version
-#   # Example is not pinned to avoid update cycle conflicts between module and implementation
-#   # tflint-ignore: terraform_module_pinned_source
-#   source = "github.com/aws-ia/terraform-aws-eks-blueprints//modules/kubernetes-addons"
-
-#   eks_cluster_id       = module.eks_blueprints.eks_cluster_id
-#   eks_cluster_endpoint = module.eks_blueprints.eks_cluster_endpoint
-#   eks_oidc_provider    = module.eks_blueprints.oidc_provider
-#   eks_cluster_version  = module.eks_blueprints.eks_cluster_version
-
-#   # EKS Managed Add-ons
-#   enable_amazon_eks_vpc_cni    = true
-#   enable_amazon_eks_coredns    = true
-#   enable_amazon_eks_kube_proxy = true
-
-#   # NetApp FSxN CSI Driver
-# #   enable_fsxn_csi_driver = true
-# #   fsxn_helm_config = {
-# #     namespace = var.namespace
-# #   }
-
-#   tags = local.tags
-# }
-
 module "fsxn_driver" {
-    source = "../../"
+    source = "https://github.com/NetApp/terraform-aws-netapp-fsxn-eks-addon"
     helm_config = {
         namespace = var.namespace
     }

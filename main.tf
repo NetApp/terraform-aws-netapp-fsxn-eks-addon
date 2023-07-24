@@ -1,4 +1,4 @@
-# Copyright (c) NetApp, Inc.
+# Copyright 2023 (c) NetApp, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 resource "helm_release" "trident" {
