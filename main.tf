@@ -1,4 +1,4 @@
-# Copyright (c) NetApp, Inc.
+# Copyright 2023 (c) NetApp, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 resource "helm_release" "trident" {
@@ -11,7 +11,7 @@ resource "helm_release" "trident" {
   chart            = "trident-operator"
   version          = try(var.helm_config.version, "23.04.0")
   repository       = try(var.helm_config.repository, "https://netapp.github.io/trident-helm-chart")
-  values          = try(var.helm_config.values, [file("${path.module}/values.yaml")])
+  values           = try(var.helm_config.values, [file("${path.module}/values.yaml")])
 
   timeout                    = try(var.helm_config.timeout, 1200)
   repository_key_file        = try(var.helm_config.repository_key_file, null)

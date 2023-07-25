@@ -1,4 +1,4 @@
-# Copyright (c) NetApp, Inc.
+# Copyright 2023 (c) NetApp, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 variable "cluster_version" {
@@ -17,9 +17,4 @@ variable "vpc_cidr" {
   type        = string
   description = "VPC CIDR"
   default     = "10.0.0.0/16"
-}
-
-variable "kubernetes_version" {
-  default     = 1.23
-  description = "kubernetes version"
 }

@@ -1,4 +1,4 @@
-# Copyright (c) NetApp, Inc.
+# Copyright 2023 (c) NetApp, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 terraform {
@@ -9,6 +9,12 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = ">= 3.75.1"
+    }
+
+    # See https://registry.terraform.io/providers/hashicorp/random/3.5.1
+    random = {
+      source  = "hashicorp/random"
+      version = ">= 3.5.1"
     }
 
     # See https://registry.terraform.io/providers/hashicorp/helm/2.5.1
