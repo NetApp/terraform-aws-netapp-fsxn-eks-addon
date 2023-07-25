@@ -4,7 +4,6 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cluster_version | Kubernetes version to use for EKS Cluster | `string` | `"1.23"` | no |
-| kubernetes_version | kubernetes version | `number` | `1.23` | no |
 | namespace | Kubernetes Namespace to deploy HashiCorp Vault in | `string` | `"trident"` | no |
 | vpc_cidr | VPC CIDR | `string` | `"10.0.0.0/16"` | no |
 
