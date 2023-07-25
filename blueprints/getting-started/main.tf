@@ -31,7 +31,6 @@ data "aws_eks_cluster_auth" "this" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name = "trident"
   cluster_name = "fsx-eks-${random_string.suffix.result}"
 
   region = "us-east-2"
@@ -47,22 +46,14 @@ locals {
 ################################################################################
 
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  version         = "19.15.3"
-  cluster_name    = local.cluster_name
-  cluster_version = var.kubernetes_version
-  subnet_ids      = module.vpc.private_subnets  
+  source                         = "terraform-aws-modules/eks/aws"
+  version                        = "19.15.3"
+  cluster_name                   = local.cluster_name
+  cluster_version                = var.cluster_version
   cluster_endpoint_public_access = true
-
-  enable_irsa = true
-
-  tags = {
-    Environment = "training"
-    GithubRepo  = "terraform-aws-eks"
-    GithubOrg   = "terraform-aws-modules"
-  }
-
-  vpc_id = module.vpc.vpc_id
+  enable_irsa                    = true
+  subnet_ids                     = module.vpc.private_subnets
+  vpc_id                         = module.vpc.vpc_id
 
   eks_managed_node_group_defaults = {
     ami_type               = "AL2_x86_64"
@@ -70,26 +61,31 @@ module "eks" {
     vpc_security_group_ids = [aws_security_group.all_worker_mgmt.id]
   }
 
-  eks_managed_node_groups = {
 
+  eks_managed_node_groups = {
     fsx_group = {
       min_size     = 2
       max_size     = 6
       desired_size = 2
     }
   }
-}
 
+  tags = {
+    Environment = "training"
+    GithubRepo  = "terraform-aws-eks"
+    GithubOrg   = "terraform-aws-modules"
+  }
+}
 
 ################################################################################
 # EKS Addons
 ################################################################################
 
 module "fsxn_driver" {
-    source = "github.com/NetApp/terraform-aws-netapp-fsxn-eks-addon//"
-    helm_config = {
-        namespace = var.namespace
-    }
+  source = "github.com/NetApp/terraform-aws-netapp-fsxn-eks-addon.git?ref=v1.0"
+  helm_config = {
+    namespace = var.namespace
+  }
 }
 
 ################################################################################
